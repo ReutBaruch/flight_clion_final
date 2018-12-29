@@ -1,8 +1,13 @@
 #include "LoopCommand.h"
 
-
+/**
+ * execute
+ * @param script  the iterator
+ * @return 0 when finish
+ */
 int LoopCommand::execute(vector<string>::iterator &vectorIt) {
     list<CommandExpression*> tempList;
+    //check the condition
     while (this->boolExpression->calculateBool(
             this->symbolTable->getSymbols())) {
         tempList = this->commandExpressions;
