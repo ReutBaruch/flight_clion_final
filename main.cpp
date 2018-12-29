@@ -22,13 +22,17 @@
 
 
 int main(int argc, char* argv[]) {
+    //have no file to read from
     if(argc != 2){
         throw ("Invalid input");
     }
+    //get file name
     string fileName = argv[1];
     lexer* lex = new lexer(fileName);
     vector<string> toParser;
+    //separete to words
     toParser = lex->lexerFile();
+    //run program according to file
     parser* par = new parser();
     par->runParser(toParser);
 
