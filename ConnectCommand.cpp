@@ -1,5 +1,6 @@
 #include "ConnectCommand.h"
 
+//struct
 struct socketArgs {
     string ip;
     int port;
@@ -8,12 +9,23 @@ struct socketArgs {
     ExitServer* exitServer;
 };
 
+
+/**
+ * constructor
+ * @param check CheckConnection
+ * @param flightStr  StringFlightControls
+ */
 ConnectCommand::ConnectCommand(CheckConnection* check, StringFlightControls* flightStr, ExitServer* exit) {
     this->isConnected = check;
     this->flightString = flightStr;
     this->toExit = exit;
 }
 
+/**
+ * connection client
+ * @param args agrs
+ * @return
+ */
 void* connectClient(void* args) {
 
     struct socketArgs *arg = (struct socketArgs *) args;
@@ -24,17 +36,19 @@ void* connectClient(void* args) {
     char buffer[256];
     portno = arg->port;
 
-    /* Create a socket point */
+    // Create a socket point
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
 
+     //if there is a problem open socket
     if (sockfd < 0) {
-        perror("ERROR opening socket");
+        perror("ERROR: can't open socket");
         exit(1);
     }
     const char *hostName = arg->ip.c_str();
     server = gethostbyname(hostName);
+    //there is no such host
     if (server == NULL) {
-        fprintf(stderr, "ERROR, no such host\n");
+        fprintf(stderr, "ERROR: no such host");
         exit(0);
     }
 
@@ -44,24 +58,27 @@ void* connectClient(void* args) {
           server->h_length);
     serv_addr.sin_port = htons(portno);
 
+    //if there is no connection
     while (arg->flag->getConnect() == false) {
     }
-    /* Now connect to the server */
+    // try connect to the server
     if (connect(sockfd, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) <
         0) {
-        perror("ERROR connecting");
+        //problem in connection
+        perror("ERROR: problem in connecting");
         exit(1);
     }
-    cout<< "client connected" << endl;
 
     while(!arg->exitServer->getExit()) {
+        //there are still arguments
         while(!arg->controlString->isEmpty()){
             bzero(buffer,256);
             string ddd = arg->controlString->getControl();
             strcpy(buffer, ddd.c_str());
             ssize_t ssize = write(sockfd, buffer, strlen(buffer));
+            //problem to write to the socket
             if (ssize < 0) {
-                perror("ERROR writing to socket");
+                perror("ERROR: problem writing to socket");
                 exit(1);
             }
         }
@@ -69,20 +86,29 @@ void* connectClient(void* args) {
     close(sockfd);
     return 0;
 }
-
+/**
+ *
+ * @param vectorIt the iterator
+ * @return 0 when done
+ */
 int ConnectCommand::execute(vector<string>::iterator &vectorIt) {
     int port;
     string ip;
+    //get the ip
     ip = *vectorIt;
+    //move the iterator +1
     vectorIt++;
+    //get the number value of the port
     port = stoi(*vectorIt);
     struct socketArgs* arg = new socketArgs();
+    //put the values in the struct
     arg->port = port;
     arg->ip = ip;
     arg->flag = isConnected;
     arg->controlString = this->flightString;
     arg->exitServer = this->toExit;
     pthread_t pthread;
+    //create
     pthread_create(&pthread, nullptr, connectClient, arg);
     pthread_detach(pthread);
     vectorIt++;
