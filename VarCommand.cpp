@@ -6,6 +6,7 @@ int VarCommand::execute(vector<string>::iterator &vectorIt){
     string varName = (*vectorIt);
     vectorIt += 2;
     countSteps+=2;
+    //need to bid the variables
     if ((*vectorIt) == "bind") {
         vectorIt++;
         countSteps++;
