@@ -25,7 +25,7 @@ public:
     }
     void setCommandsMap(map <string,Command*> cMap);
     virtual int execute(vector<string>::iterator &vectorIt);
-    virtual ~LoopCommand(){};
+    ~LoopCommand(){};
 };
 
 

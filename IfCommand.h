@@ -18,7 +18,7 @@ public:
         this->symbolTable=symbolTable;
     }
     virtual int execute(vector<string>::iterator &vectorIt);
-    virtual ~IfCommand(){};
+    ~IfCommand(){};
 
 };
 

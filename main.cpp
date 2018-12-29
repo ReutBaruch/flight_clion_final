@@ -22,11 +22,11 @@
 
 
 int main(int argc, char* argv[]) {
-    /*if(argc != 2){
+    if(argc != 2){
         throw ("Invalid input");
-    }*/
-    //string fileName = argv[1];
-    lexer* lex = new lexer("test.txt");
+    }
+    string fileName = argv[1];
+    lexer* lex = new lexer(fileName);
     vector<string> toParser;
     toParser = lex->lexerFile();
     parser* par = new parser();

@@ -25,7 +25,7 @@ public:
     double calculate();
     double calculate(map<string, double> &assignment);
 
-    virtual ~CommandExpression(){ };
+    ~CommandExpression(){ };
 };
 
 

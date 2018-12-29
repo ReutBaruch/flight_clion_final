@@ -16,12 +16,15 @@ public:
     BoolExpression(string stringCondition, SymbolTable* symbol) {
         this->symbols = symbol;
         this->createBoolExpression(stringCondition);
+        //this->createExpression = createExp;
     }
 
     void createBoolExpression(string conditionToCheck);
     bool calculateBool(map <string,double> symbolMap);
 
-    ~BoolExpression(){}
+    ~BoolExpression(){
+        delete this->createExpression;
+    }
 };
 
 #endif //PROJECT1_BOOLEXPRESSION_H

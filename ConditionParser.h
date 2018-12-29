@@ -26,7 +26,6 @@ public:
     void createCommand(vector<string>::iterator &vectorIt);
 
     virtual ~ConditionParser(){
-
         list<Command*>::iterator itr;
         for(itr = toDelete.begin(); itr != toDelete.end(); itr++){
             delete (*itr);

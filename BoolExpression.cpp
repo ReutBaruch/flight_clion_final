@@ -20,7 +20,7 @@ void BoolExpression::createBoolExpression(string conditionToCheck) {
         }
     }
 
-    this->leftArgument = this->createExpression->convertToExpression(expression);
+    this->leftArgument = createExpression->convertToExpression(expression);
     while ((conditionToCheck[strLen] == '<') || (conditionToCheck[strLen] == '>') ||
            (conditionToCheck[strLen] == '=') || (conditionToCheck[strLen] == '!')) {
         action += conditionToCheck[strLen];
@@ -34,7 +34,7 @@ void BoolExpression::createBoolExpression(string conditionToCheck) {
         expression += conditionToCheck[strLen];
         strLen++;
     }
-    this->rightArgument = this->createExpression->convertToExpression(expression);
+    this->rightArgument = createExpression->convertToExpression(expression);
 }
 
 bool BoolExpression::calculateBool(map<string, double> symbolMap) {
