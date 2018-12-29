@@ -1,6 +1,8 @@
 
 #include "FlightValueMap.h"
-
+/**
+ * initalize the map
+ */
 void FlightValueMap::initalize() {
     this->mapOfFlightValue.insert(pair<string, double>( "/instrumentation/airspeed-indicator/indicated-speed-kt", 0));
     this->indexOfBind.insert(pair<int, string>(0, "/instrumentation/airspeed-indicator/indicated-speed-kt"));
@@ -73,9 +75,14 @@ void FlightValueMap::initalize() {
     this->save = "";
 }
 
+/**
+ * update the map according to the string
+ * @param values  the value to update to
+ */
 void FlightValueMap::updateMap(string values) {
     char* charLine = const_cast<char *>(values.c_str());
     char* splitValues = strtok(charLine, ",");
+    //check if the value the function got is in the map
     for (int i = 0; i < 23; i++){
         if (this->indexOfBind.count(i)){
             string path = this->indexOfBind.find(i)->second;
