@@ -79,7 +79,7 @@ double CommandExpression::calculate(map<string, double> &assignment) {
         //execute the command
         this->command->execute(tempIt);
 
-        /if the string value of the iterator is "print" 
+        //if the string value of the iterator is "print" 
     } else if((*vectorIt) == "print"){
         //move the iterator 1 step and count 1 step
         vectorIt++;
