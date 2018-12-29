@@ -1,6 +1,3 @@
-//
-// Created by Administrator on 10/12/2018.
-//
 #include <string>
 #include "string.h"
 #include <unordered_map>
@@ -12,10 +9,12 @@ using namespace std;
 #ifndef PROJECT1_NUM_H
 #define PROJECT1_NUM_H
 
-
+/**
+ * Num class inheritors Expression
+ */
 class Num : public Expression
 {
-//Members
+//members
 private:
     double num;
 
@@ -25,7 +24,6 @@ public:
 
     /**
      * The function build Num by double.
-     *
      * @param num a double type
      */
     Num(double n){
@@ -34,7 +32,6 @@ public:
 
     /**
      * The function return the value of the operation function.
-     *
      * @param assignment evaluate the expression using in this assignment
      * @return value of this num
      * @throws Exception if is not assignment or not valid operation or number
@@ -43,7 +40,6 @@ public:
 
     /**
      * A convenience method. Like the `evaluate(assignment)` method above, but uses an empty assignment.
-     *
      * @return the value of this num
      * @throws Exception if is not assignment or not valid operation or number
      */
