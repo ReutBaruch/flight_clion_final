@@ -7,18 +7,23 @@
 #include "PathMap.h"
 
 using namespace std;
-
+/**
+* class Symbol table
+*/
 class SymbolTable{
+    //memmbers
     map<string, double> symbols;
     map<string, string> bindedSymbols;
     FlightValueMap* flightValues;
     PathMap* bindMap;
 
 public:
+    //constructor
     SymbolTable(FlightValueMap* flightVal, PathMap* bind){
         this->flightValues = flightVal;
         this->bindMap = bind;
     }
+    
     void setSymbol(string s, double num);
     void addSymbol(string s, double num);
     map<string, double> getSymbols();
