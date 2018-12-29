@@ -8,30 +8,42 @@
 
 using namespace std;
 /**
-* class Symbol table
-*/
+ * class Symbol table
+ */
 class SymbolTable{
-    //memmbers
+    //members
     map<string, double> symbols;
     map<string, string> bindedSymbols;
     FlightValueMap* flightValues;
     PathMap* bindMap;
 
 public:
-    //constructor
+    /**
+     * constructor
+     * @param flightVal values from plan, path and value
+     * @param bind path and variable
+     */
     SymbolTable(FlightValueMap* flightVal, PathMap* bind){
         this->flightValues = flightVal;
         this->bindMap = bind;
     }
-    
-    void setSymbol(string s, double num);
-    void addSymbol(string s, double num);
-    map<string, double> getSymbols();
-    double getValue(string s);
-    bool isInSymbol(string str);
-    void addPairSymbol(string key, string value) ;
-    string getPath(string key);
 
+    void setSymbol(string s, double num);
+
+    void addSymbol(string s, double num);
+
+    map<string, double> getSymbols();
+
+    double getValue(string s);
+
+    bool isInSymbol(string str);
+
+    void addPairSymbol(string key, string value) ;
+
+    string getPath(string key);
+    /**
+     * distroctur
+     */
     ~SymbolTable(){}
 };
 
