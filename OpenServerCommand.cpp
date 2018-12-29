@@ -13,7 +13,10 @@ OpenServerCommand::OpenServerCommand(CheckConnection* check, FlightValueMap* val
     this->valueMap = values;
     this->toExit = exit;
 }
-
+/**
+* open the socket
+*@param args arguments
+*/
 void* openSocket(void* args) {
 
     struct socketArgs *arg = (struct socketArgs *) args;
@@ -74,10 +77,17 @@ void* openSocket(void* args) {
     return 0;
 }
 
+/**
+     * execute
+     * @param vectorIt the iterator
+     * @return 0 when done
+     */
 int OpenServerCommand::execute(vector<string>::iterator &vectorIt) {
     int port,time;
+    //get the port value by string
     port = stoi(*vectorIt);
     vectorIt++;
+    //get the time by number value
     time = stoi(*vectorIt);
     struct socketArgs* arg = new socketArgs();
     arg->port = port;
