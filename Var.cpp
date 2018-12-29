@@ -5,6 +5,7 @@ Var::Var(string v, SymbolTable* symbol) {
     this->symbols = symbol;
 }
 
+//returns the value of the variable
 double Var::calculate(map<string, double> &assignment) {
     if(this->symbols->isInSymbol(this->var)){
         return this->symbols->getValue(this->var);
