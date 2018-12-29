@@ -4,10 +4,15 @@
 #include <string>
 #include "Expression.h"
 #include "SymbolTable.h"
+/**
+* class Var
+*/
 class Var: public Expression {
+    //memmbers
     string var;
     SymbolTable* symbols;
 public:
+    //constroctur
     Var(string v, SymbolTable* symbol);
     virtual double calculate(map<string, double> &assignment);
 
