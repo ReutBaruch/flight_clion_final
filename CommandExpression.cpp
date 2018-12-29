@@ -9,7 +9,7 @@ double CommandExpression::calculate(map<string, double> &assignment) {
     vector<string>::iterator tempItr;
     tempItr=this->vectorIt;
 
-    createExpression = new CreateExpression(this->symbols);
+    //createExpression = new CreateExpression(this->symbols);
 
     int counter = 0;
 
@@ -90,7 +90,6 @@ double CommandExpression::calculate(map<string, double> &assignment) {
         this->command->execute(newVectorIt);
     }
     this->vectorIt=tempItr;
-    delete createExpression;
     return counter;
 }
 

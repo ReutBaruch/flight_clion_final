@@ -2,9 +2,10 @@
 #include "IfCommand.h"
 #include "LoopCommand.h"
 
-ConditionParser::ConditionParser(CommandMap* commandMap, SymbolTable *symbolMap) {
+ConditionParser::ConditionParser(CommandMap* commandMap, SymbolTable *symbolMap, CreateExpression* createExp) {
     this->symbolTable = symbolMap;
     this->commandMap = commandMap;
+    this->createExpression = createExp;
 }
 
 int ConditionParser::execute(vector<string>::iterator &vectorIt) {
@@ -40,12 +41,12 @@ void ConditionParser::createCommand(vector<string>::iterator &vectorIt) {
     while ((*vectorIt) != "}") {
         if (this->symbolTable->isInSymbol(*vectorIt)) {
             newCommand = this->commandMap->getCommand("control");
-            commandExp = new CommandExpression(vectorIt, newCommand, this->symbolTable);
+            commandExp = new CommandExpression(vectorIt, newCommand, this->symbolTable, this->createExpression);
             this->expressionCommandList.push_back(commandExp);
             this->toDeleteCommExp.push_back(commandExp);
         } else if (this->commandMap->isInMap(*vectorIt)) {
             commandExp = new CommandExpression(vectorIt,
-                    this->commandMap->getCommand(*vectorIt), this->symbolTable);
+                    this->commandMap->getCommand(*vectorIt), this->symbolTable, this->createExpression);
             this->expressionCommandList.push_back(commandExp);
             this->toDeleteCommExp.push_back(commandExp);
         }

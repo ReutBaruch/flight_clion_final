@@ -14,10 +14,12 @@ class CommandExpression: public Expression {
 
 
 public:
-    CommandExpression(vector<string>::iterator &it, Command* command1, SymbolTable* symbol){
+    CommandExpression(vector<string>::iterator &it, Command* command1, SymbolTable* symbol,
+            CreateExpression* createExp){
         this->command = command1;
         this->vectorIt = it;
         this->symbols = symbol;
+        this->createExpression = createExp;
     }
 
     double calculate();

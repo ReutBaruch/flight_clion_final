@@ -16,10 +16,11 @@ class ConditionParser : public Command {
     SymbolTable* symbolTable;
     list<Command*> toDelete;
     list<CommandExpression*> toDeleteCommExp;
+    CreateExpression* createExpression;
 
 public:
 
-    ConditionParser(CommandMap* commandMap,SymbolTable* symbolMap);
+    ConditionParser(CommandMap* commandMap,SymbolTable* symbolMap, CreateExpression* createExp);
 
     virtual int execute(vector<string>::iterator &vectorIt);
     void createCommand(vector<string>::iterator &vectorIt);
@@ -35,7 +36,6 @@ public:
         for(itCom = toDeleteCommExp.begin(); itCom != toDeleteCommExp.end(); itCom++){
             delete (*itCom);
         }
-       // delete this->boolExpression;
     };
 };
 

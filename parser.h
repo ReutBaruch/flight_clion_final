@@ -29,7 +29,7 @@ class parser {
     StringFlightControls* stringControl;
     ExitServer* toExit;
     list<Expression*> toDelete;
-    //CreateExpression* createExpression;
+    CreateExpression* createExpression;
 
 public:
     parser();
@@ -53,6 +53,7 @@ public:
         for(itr = toDelete.begin(); itr != toDelete.end(); itr++){
             delete (*itr);
         }
+        delete this->createExpression;
     }
 };
 

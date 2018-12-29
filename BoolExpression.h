@@ -21,9 +21,7 @@ public:
     void createBoolExpression(string conditionToCheck);
     bool calculateBool(map <string,double> symbolMap);
 
-    ~BoolExpression(){
-        delete this->createExpression;
-    }
+    ~BoolExpression(){}
 };
 
 #endif //PROJECT1_BOOLEXPRESSION_H
